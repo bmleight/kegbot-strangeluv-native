@@ -1,0 +1,31 @@
+{
+    "presets": ["module:metro-react-native-babel-preset"],
+    "sourceMaps": true,
+    "plugins": [
+        ["babel-plugin-styled-components"],
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "src"
+                ],
+                "alias": {
+                    "components": "./src/components",
+                    "containers": "./src/containers",
+                    "reducers": "./src/reducers",
+                    "images": "./src/images",
+                    "actions": "./src/actions",
+                    "action-types": "./src/action-types",
+                    "static": "./src/static",
+                    "screens": "./src/screens",
+                    "wiring": "./src/wiring",
+                    "utils": "./src/utils",
+                    "styles": "./src/styles",
+                    "initializers": "./src/initializers",
+                    "navigators": "./src/navigators",
+                    "base-theme": "./native-base-theme"
+                }
+            }
+        ]
+    ]
+}
