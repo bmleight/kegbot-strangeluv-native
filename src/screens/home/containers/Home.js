@@ -1,6 +1,7 @@
 const Connect = require('react-redux').connect;
 const AuthSelectors = require('selectors/auth');
 const AuthAct = require('actions/auth');
+const KegbotActions = require('actions/kegbot');
 const HomeView = require('../components/HomeView');
 
 const internals = {};
@@ -11,7 +12,8 @@ internals.connect = Connect(
         isAuthenticated: AuthSelectors.getIsAuthenticated(state)
     }),
     {
-        logout: AuthAct.logout
+        logout: AuthAct.logout,
+        drive: KegbotActions.drive
     }
 );
 
