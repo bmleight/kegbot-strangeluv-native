@@ -6,7 +6,8 @@ const { ScrollView, Card, Container, Text, Button } = require('styles');
 module.exports = class HomeView extends React.PureComponent {
 
     static propTypes = {
-        drive: T.func.isRequired
+        drive: T.func.isRequired,
+        isConnected: T.bool.isRequired
     };
 
     render() {
@@ -21,12 +22,12 @@ module.exports = class HomeView extends React.PureComponent {
                         </CardItem>
                         <CardItem bordered>
                             <Container>
-                                <Button text='left' onPress={() => this.props.drive('left')} />
-                                <Button text='right' onPress={() => this.props.drive('right')} />
+                                <Button text='left' onPress={() => this.props.drive('hackbot/left')} disabled={!this.props.isConnected} />
+                                <Button text='right' onPress={() => this.props.drive('hackbot/right')} disabled={!this.props.isConnected} />
                             </Container>
                             <Container>
-                                <Button text='forwards' onPress={() => this.props.drive('forwards')} />
-                                <Button text='backwards' onPress={() => this.props.drive('backwards')} />
+                                <Button text='forwards' onPress={() => this.props.drive('hackbot/forward')} disabled={!this.props.isConnected} />
+                                <Button text='backwards' onPress={() => this.props.drive('hackbot/backward')} disabled={!this.props.isConnected} />
                             </Container>
                         </CardItem>
                     </Card>

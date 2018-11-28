@@ -7,14 +7,8 @@ exports.drive = (direction) => {
 
     return (dispatch) => {
 
-        try {
-            const message = new Message(direction);
-            message.destinationName = 'kegbot';
-            Client.send(message);
-        }
-        catch (exception) {
-            // TODO: make sure we are graceful when the message fails, sometimes due to being disconnected
-            console.warn('catch in kegbot action', exception);
-        }
+        const message = new Message('kegbot');
+        message.destinationName = direction;
+        Client.send(message);
     };
 };

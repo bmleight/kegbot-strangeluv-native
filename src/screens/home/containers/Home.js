@@ -9,7 +9,8 @@ const internals = {};
 // What state and actions do we want to hook-up?
 internals.connect = Connect(
     (state) => ({
-        isAuthenticated: AuthSelectors.getIsAuthenticated(state)
+        isAuthenticated: AuthSelectors.getIsAuthenticated(state),
+        isConnected: state.mqtt.connected
     }),
     {
         logout: AuthAct.logout,

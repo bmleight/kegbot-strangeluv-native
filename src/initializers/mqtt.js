@@ -1,18 +1,22 @@
 const Client = require('../utils/mqtt-client');
+const MqttActions = require('../actions/mqtt');
 
 module.exports = (store) => {
+
+
+    Client.on('connectionLost', (responseObject) => {
+
+        store.dispatch(MqttActions.disconnected());
+    });
 
     Client
     .connect()
     .then(() => {
 
-        return Client.subscribe('kegbot');
+        store.dispatch(MqttActions.connected());
     })
     .catch((responseObject) => {
 
-        console.warn('catch mqtt intializer');
-        if (responseObject.errorCode !== 0) {
-            console.warn('onConnectionLost: ' + responseObject.errorMessage);
-        }
+        store.dispatch(MqttActions.disconnected());
     });
 };
