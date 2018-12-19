@@ -3,12 +3,13 @@ const Client = require('../utils/mqtt-client');
 
 const internals = {};
 
-exports.drive = (direction) => {
+exports.drive = (direction, data) => {
 
     return (dispatch) => {
 
         const message = new Message('kegbot');
         message.destinationName = direction;
-        Client.send(message);
+        console.warn(data);
+        Client.send(message, data);
     };
 };
