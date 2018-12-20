@@ -22,12 +22,12 @@ module.exports = class HomeView extends React.PureComponent {
                         </CardItem>
                         <CardItem bordered>
                             <Container>
-                                <Button text='left' onPress={() => this.props.drive('hackbot/left')} disabled={!this.props.isConnected} />
-                                <Button text='right' onPress={() => this.props.drive('hackbot/right')} disabled={!this.props.isConnected} />
+                                <Button text='left' onPress={() => this.props.drive('hackbot/drive')} disabled={!this.props.isConnected} />
+                                <Button text='right' onPress={() => this.props.drive('hackbot/drive')} disabled={!this.props.isConnected} />
                             </Container>
                             <Container>
-                                <Button text='forwards' onPress={() => this.props.drive('hackbot/forward')} disabled={!this.props.isConnected} />
-                                <Button text='backwards' onPress={() => this.props.drive('hackbot/backward')} disabled={!this.props.isConnected} />
+                                <Button text='forwards' onPress={() => this.props.drive('hackbot/drive')} disabled={!this.props.isConnected} />
+                                <Button text='backwards' onPress={() => this.props.drive('hackbot/drive')} disabled={!this.props.isConnected} />
                             </Container>
                             <Container>
                                 <Button text='fire' onPress={() => this.props.drive('hackbot/fire')} disabled={!this.props.isConnected} />
