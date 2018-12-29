@@ -3,7 +3,7 @@ const Client = require('../utils/mqtt-client');
 
 const internals = {};
 
-exports.drive = (direction, data = '') => {
+exports.drive = (direction, data = {}) => {
 
     return (dispatch) => {
 
@@ -11,7 +11,7 @@ exports.drive = (direction, data = '') => {
         //     data = '';
         // }
 
-        const message = new Message(data);
+        const message = new Message(JSON.stringify(data));
         message.destinationName = direction;
 
         Client.send(message);
