@@ -22,18 +22,15 @@ module.exports = class HomeView extends React.PureComponent {
                         </CardItem>
                         <CardItem bordered>
                             <Container>
-                                <Button text='left' onPress={() => this.props.drive('hackbot/drive', { left: -50, right: 50 })} disabled={!this.props.isConnected} />
-                                <Button text='right' onPress={() => this.props.drive('hackbot/drive', { left: 50, right: -50 })} disabled={!this.props.isConnected} />
+                                <Button text='left' onPress={() => this.props.drive('hackbot/drive', { left: -30, right: 30 })} disabled={!this.props.isConnected} />
+                                <Button text='right' onPress={() => this.props.drive('hackbot/drive', { left: 30, right: -30 })} disabled={!this.props.isConnected} />
                             </Container>
                             <Container>
-                                <Button text='forward' onPress={() => this.props.drive('hackbot/drive', { left: 50, right: 50 })} disabled={!this.props.isConnected} />
-                                <Button text='backward' onPress={() => this.props.drive('hackbot/drive', { left: -50, right: -50 })} disabled={!this.props.isConnected} />
+                                <Button text='forward' onPress={() => this.props.drive('hackbot/drive', { left: 30, right: 30 })} disabled={!this.props.isConnected} />
+                                <Button text='backward' onPress={() => this.props.drive('hackbot/drive', { left: -30, right: -30 })} disabled={!this.props.isConnected} />
                             </Container>
                             <Container>
                                 <Button text='fire' onPress={() => this.props.drive('hackbot/fire')} disabled={!this.props.isConnected} />
-                            </Container>
-                            <Container>
-                                <Button text='drive' onPress={() => this.props.drive('hackbot/drive', { left: 10, right: 10 })} disabled={!this.props.isConnected} />
                             </Container>
                         </CardItem>
                     </Card>
