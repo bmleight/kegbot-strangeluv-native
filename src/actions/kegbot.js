@@ -7,10 +7,6 @@ exports.drive = (direction, data = {}) => {
 
     return (dispatch) => {
 
-        // if (typeof data === 'undefined') {
-        //     data = '';
-        // }
-
         const message = new Message(JSON.stringify(data));
         message.destinationName = direction;
 
