@@ -1,19 +1,16 @@
 const React = require('react');
 const T = require('prop-types');
 const { CardItem } = require('native-base');
-const { FooterNav, ScrollView, Card, Container, Image, Text } = require('styles');
+const { ScrollView, Card, Container, Text, Button } = require('styles');
 
 module.exports = class HomeView extends React.PureComponent {
 
     static propTypes = {
-        navigation: T.object.isRequired,
-        isAuthenticated: T.bool.isRequired,
-        logout: T.func.isRequired
+        drive: T.func.isRequired,
+        isConnected: T.bool.isRequired
     };
 
     render() {
-
-        const { navigation, isAuthenticated, logout } = this.props;
 
         return (
 
@@ -21,32 +18,23 @@ module.exports = class HomeView extends React.PureComponent {
                 <ScrollView>
                     <Card>
                         <CardItem header bordered>
-                            <Text>Yo! I am Strangeluv Native</Text>
+                            <Text>Drive</Text>
                         </CardItem>
                         <CardItem bordered>
-                            <Image source={require('../assets/duck.png')} />
-                        </CardItem>
-                        <CardItem footer bordered>
-                            <Text>with Nativebase</Text>
-                        </CardItem>
-                    </Card>
-                    <Card>
-                        <CardItem header bordered>
-                            <Text>It is a Auth Recipe</Text>
-                        </CardItem>
-                        <CardItem bordered>
-                            <Image source={require('../assets/icon.png')} />
-                        </CardItem>
-                        <CardItem footer bordered>
-                            <Text>A pretty sweet start to a user centric app</Text>
+                            <Container>
+                                <Button text='left' onPress={() => this.props.drive('hackbot/drive', { left: -30, right: 30 })} disabled={!this.props.isConnected} />
+                                <Button text='right' onPress={() => this.props.drive('hackbot/drive', { left: 30, right: -30 })} disabled={!this.props.isConnected} />
+                            </Container>
+                            <Container>
+                                <Button text='forward' onPress={() => this.props.drive('hackbot/drive', { left: 30, right: 30 })} disabled={!this.props.isConnected} />
+                                <Button text='backward' onPress={() => this.props.drive('hackbot/drive', { left: -30, right: -30 })} disabled={!this.props.isConnected} />
+                            </Container>
+                            <Container>
+                                <Button text='fire' onPress={() => this.props.drive('hackbot/fire')} disabled={!this.props.isConnected} />
+                            </Container>
                         </CardItem>
                     </Card>
                 </ScrollView>
-                <FooterNav
-                    isAuthenticated={isAuthenticated}
-                    logout={logout}
-                    navigation={navigation}
-                />
             </Container>
         );
     }
