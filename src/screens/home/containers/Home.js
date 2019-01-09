@@ -14,7 +14,8 @@ internals.connect = Connect(
     }),
     {
         logout: AuthAct.logout,
-        drive: KegbotActions.drive
+        drive: KegbotActions.drive,
+        setMotors: KegbotActions.setMotors
     }
 );
 
