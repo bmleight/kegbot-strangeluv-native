@@ -18,7 +18,7 @@ module.exports = (store) => {
         const v = (100 - Math.abs(x)) * (y / 100) + y;
 
         // Calculate R-L (Call it W): W= (100-ABS(Y)) * (X/100) + X
-        const w = (100 - Math.abs(y)) * (x / 100) * x;
+        const w = (100 - Math.abs(y)) * (x / 100) + x;
 
         // Calculate R: R = (V+W) /2
         const right = (v + w) / 2;
