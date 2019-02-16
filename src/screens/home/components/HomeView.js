@@ -7,7 +7,6 @@ const { Joystick } = require('joystick-component-lib');
 module.exports = class HomeView extends React.PureComponent {
 
     static propTypes = {
-        drive: T.func.isRequired,
         setMotors: T.func.isRequired,
         isConnected: T.bool.isRequired
     };
@@ -45,7 +44,10 @@ module.exports = class HomeView extends React.PureComponent {
             <Container>
                 <Card>
                     <CardItem header bordered>
-                        <Text>Drive</Text>
+                        <Text>Drive ({this.props.isConnected ? 'connected' : 'not connected'})</Text>
+                    </CardItem>
+                    <CardItem bordered>
+                        <Text>Debug info: ({Math.floor(this.state.px)}, {Math.floor(this.state.py)})</Text>
                     </CardItem>
                     <CardItem bordered>
                         <Container>

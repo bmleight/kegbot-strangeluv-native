@@ -5,7 +5,14 @@ module.exports = (store) => {
 
     const sendVelocity = () => {
 
+        // return;
         const state = store.getState();
+        // console.warn('test');
+        if (!state.mqtt.connected) {
+            // console.warn('not connected');
+            setTimeout(sendVelocity, 100);
+            return;
+        }
 
         // x,y => left,right conversion adapted from http://home.kendra.com/mauser/Joystick.html
 
@@ -20,11 +27,11 @@ module.exports = (store) => {
         // Calculate R-L (Call it W): W= (100-ABS(Y)) * (X/100) + X
         const w = (100 - Math.abs(y)) * (x / 100) + x;
 
-        // Calculate R: R = (V+W) /2
-        const right = (v + w) / 2;
+        // Calculate R: R = (V+W) /2 -- I inverted and switched these...because shit is/was backwards!
+        const left = Math.floor((v + w) / 2) * -1;
 
-        // Calculate L: L= (V-W)/2
-        const left = (v - w) / 2;
+        // Calculate L: L= (V-W)/2 -- I inverted and switched these...because shit is/was backwards! -- could be how jazzy is wired
+        const right = Math.floor((v - w) / 2) * -1;
 
         // Do any scaling on R and L your hardware may require.
         // Send those values to your Robot.
@@ -33,10 +40,11 @@ module.exports = (store) => {
         const message = new Message(JSON.stringify({ left, right }));
         message.destinationName = 'hackbot/drive';
 
+        // console.warn(JSON.stringify({ left, right }));
         Client.send(message);
 
         // console.warn(x, y);
-        setTimeout(sendVelocity, 100);
+        setTimeout(sendVelocity, 400);
     };
 
     setTimeout(sendVelocity, 1000);
