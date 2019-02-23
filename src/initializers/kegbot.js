@@ -5,11 +5,9 @@ module.exports = (store) => {
 
     const sendVelocity = () => {
 
-        // return;
         const state = store.getState();
-        // console.warn('test');
+
         if (!state.mqtt.connected) {
-            // console.warn('not connected');
             setTimeout(sendVelocity, 100);
             return;
         }
@@ -40,10 +38,8 @@ module.exports = (store) => {
         const message = new Message(JSON.stringify({ left, right }));
         message.destinationName = 'hackbot/drive';
 
-        // console.warn(JSON.stringify({ left, right }));
         Client.send(message);
 
-        // console.warn(x, y);
         setTimeout(sendVelocity, 100);
     };
 
