@@ -44,7 +44,7 @@ module.exports = (store) => {
         Client.send(message);
 
         // console.warn(x, y);
-        setTimeout(sendVelocity, 400);
+        setTimeout(sendVelocity, 100);
     };
 
     setTimeout(sendVelocity, 1000);

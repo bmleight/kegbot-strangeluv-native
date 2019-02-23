@@ -8,14 +8,5 @@ module.exports = (store) => {
         store.dispatch(MqttActions.disconnected());
     });
 
-    Client
-    .connect()
-    .then(() => {
-
-        store.dispatch(MqttActions.connected());
-    })
-    .catch((responseObject) => {
-
-        store.dispatch(MqttActions.disconnected());
-    });
+    store.dispatch(MqttActions.connect());
 };

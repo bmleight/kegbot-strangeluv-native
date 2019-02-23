@@ -2,6 +2,7 @@ const Connect = require('react-redux').connect;
 const AuthSelectors = require('selectors/auth');
 const AuthAct = require('actions/auth');
 const KegbotActions = require('actions/kegbot');
+const MqttActions = require('actions/mqtt');
 const HomeView = require('../components/HomeView');
 
 const internals = {};
@@ -15,7 +16,9 @@ internals.connect = Connect(
     {
         logout: AuthAct.logout,
         drive: KegbotActions.drive,
-        setMotors: KegbotActions.setMotors
+        setMotors: KegbotActions.setMotors,
+        connect: MqttActions.connect,
+        disconnect: MqttActions.disconnect
     }
 );
 
