@@ -2,5 +2,6 @@
 
 module.exports = {
     auth: require('./auth'),
-    mqtt: require('./mqtt')
+    mqtt: require('./mqtt'),
+    kegbot: require('./kegbot')
 };

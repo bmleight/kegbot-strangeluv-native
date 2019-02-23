@@ -1,3 +1,4 @@
+const KegbotTypes = require('action-types/kegbot');
 const { Message } = require('react-native-paho-mqtt');
 const Client = require('../utils/mqtt-client');
 
@@ -13,3 +14,11 @@ exports.drive = (direction, data = {}) => {
         Client.send(message);
     };
 };
+
+exports.setMotors = (vx, vy) => ({
+    type: KegbotTypes.SET_MOTORS,
+    payload: {
+        x: vx,
+        y: vy
+    }
+});
