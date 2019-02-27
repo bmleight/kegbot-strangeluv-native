@@ -12,7 +12,18 @@ module.exports = (state, action) => {
 
         case KegbotTypes.SET_MOTORS:
 
-            return { velocityX: payload.x, velocityY: payload.y };
+            return {
+                ...state,
+                velocityX: payload.x,
+                velocityY: payload.y
+            };
+
+        case KegbotTypes.SET_BATTERY:
+
+            return {
+                ...state,
+                battery: payload.volts
+            };
     }
 
     return state;
@@ -20,5 +31,6 @@ module.exports = (state, action) => {
 
 internals.initial = () => ({
     velocityX: 0,
-    velocityY: 0
+    velocityY: 0,
+    battery: 0
 });

@@ -11,7 +11,8 @@ const internals = {};
 internals.connect = Connect(
     (state) => ({
         isAuthenticated: AuthSelectors.getIsAuthenticated(state),
-        isConnected: state.mqtt.connected
+        isConnected: state.mqtt.connected,
+        battery: state.kegbot.battery
     }),
     {
         logout: AuthAct.logout,

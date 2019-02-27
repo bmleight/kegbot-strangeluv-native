@@ -11,7 +11,8 @@ module.exports = class HomeView extends React.PureComponent {
         setMotors: T.func.isRequired,
         connect: T.func.isRequired,
         disconnect: T.func.isRequired,
-        isConnected: T.bool.isRequired
+        isConnected: T.bool.isRequired,
+        battery: T.number.isRequired
     };
 
     constructor(props) {
@@ -59,7 +60,7 @@ module.exports = class HomeView extends React.PureComponent {
                         <Text>Drive ({this.props.isConnected ? 'connected' : 'not connected'})</Text>
                     </CardItem>
                     <CardItem bordered>
-                        <Text>Debug info: ({Math.floor(this.state.px + this.state.dx)}, {Math.floor(this.state.py + this.state.dy)})</Text>
+                        <Text>Debug info: ({Math.floor(this.state.px + this.state.dx)}, {Math.floor(this.state.py + this.state.dy)}) Battery: {this.props.battery}</Text>
                         <Button
                             onPress={this.props.isConnected ? this.props.disconnect : this.props.connect}
                             text={this.props.isConnected ? 'Disconnect' : 'Connect'}

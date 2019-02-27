@@ -21,6 +21,7 @@ exports.connect = () => {
         .connect()
         .then(() => {
 
+            Client.subscribe('hackbot/status');
             dispatch(actions.connected());
         })
         .catch((responseObject) => {
