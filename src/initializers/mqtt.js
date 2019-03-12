@@ -13,7 +13,7 @@ module.exports = (store) => {
 
         switch (message.destinationName) {
             case 'hackbot/status':
-                const payload = JSON.decode(message.payloadString);
+                const payload = JSON.parse(message.payloadString);
                 store.dispatch(KegbotActions.setBattery(payload.battery));
         }
     });
