@@ -1,7 +1,9 @@
 const React = require('react');
+// const { Image } = require('react');
 const T = require('prop-types');
 const { Container, Content, Card, CardItem, Footer, FooterTab, Text, Button, Icon } = require('native-base');
-// const { ,  } = require('styles');
+const { Header, Thumbnail, Left, Body } = require('native-base');
+const { Image } = require('styles');
 const { Joystick } = require('joystick-component-lib');
 // const {  } = require('styles');
 
@@ -54,9 +56,31 @@ module.exports = class HomeView extends React.PureComponent {
     renderBeerInfo() {
 
         return (
-            <Card>
-                <CardItem header bordered>
-                    <Text>Drink Beer!</Text>
+            <Card style={{flex: 0}}>
+                <CardItem>
+                    <Left>
+                        <Thumbnail source={require('../../../images/hop-orange.png')} />
+                        <Body>
+                            <Text>NativeBase</Text>
+                            <Text note>April 15, 2016</Text>
+                        </Body>
+                    </Left>
+                </CardItem>
+                <CardItem>
+                    <Body>
+                        <Image source={require('../../../images/hop-orange.png')} style={{height: 200, width: 200, flex: 1}} />
+                        <Text>
+                            my text here
+                        </Text>
+                    </Body>
+                </CardItem>
+                <CardItem>
+                    <Left>
+                        <Button transparent textStyle={{color: '#87838B'}}>
+                            <Icon name="logo-github" />
+                            <Text>1,926 stars</Text>
+                        </Button>
+                    </Left>
                 </CardItem>
             </Card>
         );
