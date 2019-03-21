@@ -1,8 +1,8 @@
 const React = require('react');
 // const { Image } = require('react');
 const T = require('prop-types');
-const { Container, Content, Card, CardItem, Footer, FooterTab, Text, Button, Icon } = require('native-base');
-const { Header, Thumbnail, Left, Body } = require('native-base');
+const { Container, Content, Card, CardItem, CheckBox, Footer, FooterTab, Text, Button, Icon } = require('native-base');
+const { Header, Thumbnail, Left, Right, Body } = require('native-base');
 const { Image } = require('styles');
 const { Joystick } = require('joystick-component-lib');
 // const {  } = require('styles');
@@ -55,32 +55,44 @@ module.exports = class HomeView extends React.PureComponent {
 
     renderBeerInfo() {
 
+        // <Image source={require('../../../images/hop-orange.png')} style={{height: 200, width: 200, flex: 1}} />
+
+        // <CardItem>
+        //     <Left>
+        //         <Button transparent textStyle={{color: '#87838B'}}>
+        //             <Icon name="logo-github" />
+        //             <Text>1,926 stars</Text>
+        //         </Button>
+        //     </Left>
+        // </CardItem>
+
         return (
             <Card style={{flex: 0}}>
                 <CardItem>
                     <Left>
                         <Thumbnail source={require('../../../images/hop-orange.png')} />
                         <Body>
-                            <Text>NativeBase</Text>
-                            <Text note>April 15, 2016</Text>
+                            <Text>Citra Bret IPA</Text>
+                            <Text note>Great Dane Brewing</Text>
                         </Body>
                     </Left>
                 </CardItem>
                 <CardItem>
-                    <Body>
-                        <Image source={require('../../../images/hop-orange.png')} style={{height: 200, width: 200, flex: 1}} />
-                        <Text>
-                            my text here
-                        </Text>
-                    </Body>
+                    <Left>
+                        <Text note>34 IBUs</Text>
+                    </Left>
+                    <Right>
+                        <Text note>5%</Text>
+                    </Right>
                 </CardItem>
                 <CardItem>
-                    <Left>
-                        <Button transparent textStyle={{color: '#87838B'}}>
-                            <Icon name="logo-github" />
-                            <Text>1,926 stars</Text>
-                        </Button>
-                    </Left>
+                    <Body>
+                        <Text>
+                            Brewed with classic American hops; Cascade, Centennial and Citra, this West Coast Session IPA is bursting with citrus flavors.
+                            The base beer is Northern Brewer's Kama Citra IPA, then aged on brettanemyces, and finally dosed with hop terpines from
+                            Maineniacal Yeast Company.
+                        </Text>
+                    </Body>
                 </CardItem>
             </Card>
         );
@@ -94,14 +106,15 @@ module.exports = class HomeView extends React.PureComponent {
                     <Text>Drive ({this.props.isConnected ? 'connected' : 'not connected'})</Text>
                 </CardItem>
                 <CardItem bordered>
-                    <Text>Battery: {this.props.battery}</Text>
-                    <Button
-                        onPress={this.props.isConnected ? this.props.disconnect : this.props.connect}
-                        block
-                        rounded
-                    >
-                        <Text>{this.props.isConnected ? 'Disconnect' : 'Connect'}</Text>
-                    </Button>
+                    <Left>
+                        <Text>Battery: {this.props.battery}</Text>
+                    </Left>
+                    <Right>
+                        <CheckBox
+                            checked={this.props.isConnected}
+                            onPress={this.props.isConnected ? this.props.disconnect : this.props.connect}
+                        />
+                    </Right>
                 </CardItem>
                 <CardItem bordered>
                     <Container>
