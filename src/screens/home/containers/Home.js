@@ -12,7 +12,8 @@ internals.connect = Connect(
     (state) => ({
         isAuthenticated: AuthSelectors.getIsAuthenticated(state),
         isConnected: state.mqtt.connected,
-        battery: state.kegbot.battery
+        battery: state.kegbot.battery,    // TODO: move battery to the header
+        faces: state.kegbot.faces
     }),
     {
         logout: AuthAct.logout,

@@ -21,7 +21,9 @@ exports.connect = () => {
         .connect()
         .then(() => {
 
+            // Client.subscribe('hackbot/*');  // TODO: does this work?
             Client.subscribe('hackbot/status');
+            Client.subscribe('hackbot/faces');
             dispatch(actions.connected());
         })
         .catch((responseObject) => {

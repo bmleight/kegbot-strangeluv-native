@@ -2,16 +2,16 @@ const React = require('react');
 const T = require('prop-types');
 const { Header, Body, Right, Button, Icon, Title } = require('native-base');
 
-module.exports = class DefaultHeader extends React.PureComponent {
+module.exports = class Header extends React.PureComponent {
 
     static propTypes = {
-        openMenu: T.func,
+        hasFace: T.bool,
         title: T.string
     };
 
     render() {
 
-        const { title, openMenu } = this.props;
+        const { title, hasFace } = this.props;
 
         return (
 
@@ -20,10 +20,8 @@ module.exports = class DefaultHeader extends React.PureComponent {
                     <Title>{title}</Title>
                 </Body>
                 <Right>
-                    {openMenu &&
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
+                    {hasFace &&
+                        <Icon name='person' style={{ fontSize: 20, color: 'white' }} />
                     }
                 </Right>
             </Header>
