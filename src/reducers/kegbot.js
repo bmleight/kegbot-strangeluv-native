@@ -24,6 +24,13 @@ module.exports = (state, action) => {
                 ...state,
                 battery: payload.volts
             };
+
+        case KegbotTypes.FOUND_FACE:
+
+            return {
+                ...state,
+                faces: payload.faces
+            }
     }
 
     return state;
@@ -32,5 +39,14 @@ module.exports = (state, action) => {
 internals.initial = () => ({
     velocityX: 0,
     velocityY: 0,
-    battery: 0
+    battery: 0,
+    faces: null
+    // faces: {
+    //     timestamp: new Date().getTime(),
+    //     faces: [{
+    //         confidence: 0.984375,
+    //         joy: 0.0077,
+    //         boundingBox: [ 579, 60, 409, 409 ]
+    //     }]
+    // }
 });

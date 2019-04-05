@@ -1,5 +1,5 @@
 const React = require('react');
-const DefaultHeader = require('components/DefaultHeader');
+const Header = require('components/Header');
 
 module.exports = {
 
@@ -7,6 +7,6 @@ module.exports = {
     path: 'reset-password',
     navigationOptions: ({ navigation }) => ({
 
-        header: (<DefaultHeader goBack={navigation.goBack} title='Reset Password' />)
+        header: (<Header goBack={navigation.goBack} title='Reset Password' />)
     })
 };

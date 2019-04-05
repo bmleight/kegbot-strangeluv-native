@@ -29,3 +29,10 @@ exports.setBattery = (volts) => ({
         volts
     }
 });
+
+exports.foundFace = (faces) => ({
+    type: KegbotTypes.FOUND_FACE,
+    payload: {
+        faces
+    }
+});

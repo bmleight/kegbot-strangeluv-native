@@ -2,5 +2,6 @@ const KeyMirror = require('keymirror');
 
 module.exports = KeyMirror({
     SET_MOTORS: true,
-    SET_BATTERY: true
+    SET_BATTERY: true,
+    FOUND_FACE: true
 });

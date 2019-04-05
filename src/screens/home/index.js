@@ -1,11 +1,11 @@
 const React = require('react');
-const DefaultHeader = require('components/DefaultHeader');
+const FaceHeader = require('containers/FaceHeader');
 
 module.exports = {
 
     screen: require('./containers/Home'),
     path: 'home',
     navigationOptions: {
-        header: (<DefaultHeader title='Kegbot' />)
+        header: (<FaceHeader title='Kegbot' />)
     }
 };
