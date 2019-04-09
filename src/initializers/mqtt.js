@@ -20,7 +20,7 @@ module.exports = (store) => {
             case 'hackbot/status':
 
                 const payload = JSON.parse(message.payloadString);
-                store.dispatch(KegbotActions.setBattery(payload.battery));
+                store.dispatch(KegbotActions.setBattery(payload.battery / 10));
                 break;
 
             case 'hackbot/faces':
@@ -32,6 +32,7 @@ module.exports = (store) => {
                 if (internals.clearFaceTimeout) {
                     clearTimeout(internals.clearFaceTimeout);
                 }
+
                 internals.clearFaceTimeout = setTimeout(() => {
 
                     store.dispatch(KegbotActions.foundFace(null));
