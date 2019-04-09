@@ -75,7 +75,7 @@ module.exports = class HomeView extends React.PureComponent {
                     <Body>
                         <Text>
                             Brewed with classic American hops; Cascade, Centennial and Citra, this West Coast Session IPA is bursting with citrus flavors.
-                            The base beer is Northern Brewer's Kama Citra IPA, then aged on brettanemyces, and finally dosed with hop terpines from
+                            The base beer is Northern Brewers Kama Citra IPA, then aged on brettanemyces, and finally dosed with hop terpines from
                             Maineniacal Yeast Company.
                         </Text>
                     </Body>
