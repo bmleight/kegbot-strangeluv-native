@@ -1,20 +1,15 @@
 const React = require('react');
-// const { Image } = require('react');
 const T = require('prop-types');
-const { Container, Content, Card, CardItem, CheckBox, Footer, FooterTab, Text, Button, Icon } = require('native-base');
-const { Header, Thumbnail, Left, Right, Body } = require('native-base');
-const { Image } = require('styles');
+const { Container, Content, Card, CardItem, Footer, FooterTab, Text, Button, Icon } = require('native-base');
+const { Thumbnail, Left, Right, Body } = require('native-base');
+
 const { Joystick } = require('joystick-component-lib');
-// const {  } = require('styles');
 
 module.exports = class HomeView extends React.PureComponent {
 
     static propTypes = {
         setMotors: T.func.isRequired,
-        connect: T.func.isRequired,
-        disconnect: T.func.isRequired,
-        isConnected: T.bool.isRequired,
-        battery: T.number.isRequired
+        isConnected: T.bool.isRequired
     };
 
     constructor(props) {
@@ -55,19 +50,10 @@ module.exports = class HomeView extends React.PureComponent {
 
     renderBeerInfo() {
 
-        // <Image source={require('../../../images/hop-orange.png')} style={{height: 200, width: 200, flex: 1}} />
-
-        // <CardItem>
-        //     <Left>
-        //         <Button transparent textStyle={{color: '#87838B'}}>
-        //             <Icon name="logo-github" />
-        //             <Text>1,926 stars</Text>
-        //         </Button>
-        //     </Left>
-        // </CardItem>
+        const styles = { flex: 0 };
 
         return (
-            <Card style={{flex: 0}}>
+            <Card style={styles}>
                 <CardItem>
                     <Left>
                         <Thumbnail source={require('../../../images/hop-orange.png')} />
@@ -100,25 +86,25 @@ module.exports = class HomeView extends React.PureComponent {
 
     renderDrive() {
 
+        const containerStyles = {
+            marginTop: 150,
+            marginLeft: 50
+        };
+
+        const dragStyles = {
+            height: 50,
+            width: 50
+        };
+
+        const backgroundStyles = {
+            borderWidth: 3
+        };
+
         return (
             <Card>
-                <CardItem header bordered>
-                    <Text>Drive ({this.props.isConnected ? 'connected' : 'not connected'})</Text>
-                </CardItem>
                 <CardItem bordered>
-                    <Left>
-                        <Text>Battery: {this.props.battery}</Text>
-                    </Left>
-                    <Right>
-                        <CheckBox
-                            checked={this.props.isConnected}
-                            onPress={this.props.isConnected ? this.props.disconnect : this.props.connect}
-                        />
-                    </Right>
-                </CardItem>
-                <CardItem bordered>
-                    <Container>
-                        <Joystick
+                    <Container style={containerStyles}>
+                        {this.props.isConnected && <Joystick
                             shape='circular'
                             length={100}
                             neutralPointX={100}
@@ -126,7 +112,12 @@ module.exports = class HomeView extends React.PureComponent {
                             onDraggableMove={this.handleDrag}
                             onDraggableRelease={this.handleDragRelease}
                             isSticky
-                        />
+                            draggableStyle={dragStyles}
+                            backgroundStyle={backgroundStyles}
+                        />}
+                        {!this.props.isConnected && <Text>
+                            Please connect to kegbot by touching the red checkbox in the header
+                        </Text>}
                     </Container>
                 </CardItem>
             </Card>

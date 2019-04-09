@@ -30,7 +30,7 @@ module.exports = (state, action) => {
             return {
                 ...state,
                 faces: payload.faces
-            }
+            };
     }
 
     return state;
@@ -39,7 +39,7 @@ module.exports = (state, action) => {
 internals.initial = () => ({
     velocityX: 0,
     velocityY: 0,
-    battery: 0,
+    battery: null,
     faces: null
     // faces: {
     //     timestamp: new Date().getTime(),

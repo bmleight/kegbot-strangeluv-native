@@ -1,11 +1,11 @@
 const React = require('react');
-const Header = require('components/Header');
+const FaceHeader = require('containers/FaceHeader');
 
 module.exports = {
     screen: require('./containers/Dashboard'),
     path: 'dashboard',
     navigationOptions: ({ navigation }) => ({
 
-        header: (<Header goBack={() => navigation.navigate('Home')} title='Dashboard' />)
+        header: (<FaceHeader goBack={() => navigation.navigate('Home')} title='Dashboard' />)
     })
 };
