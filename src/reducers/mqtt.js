@@ -10,18 +10,43 @@ module.exports = (state, action) => {
 
     switch (type) {
 
-        case MqttTypes.CONNECTED:
+        case MqttTypes.CONNECT_START:
+        case MqttTypes.DISCONNECT_START:
 
-            return { connected: true };
+            return {
+                ...state,
+                connectionPending: true
+            };
 
-        case MqttTypes.DISCONNECTED:
+        case MqttTypes.CONNECT_FAILURE:
+        case MqttTypes.DISCONNECT_FAILURE:
 
-            return { connected: false };
+            return {
+                ...state,
+                connectionPending: false
+            };
+
+        case MqttTypes.CONNECT_SUCCESS:
+
+            return {
+                ...state,
+                connected: true,
+                connectionPending: false
+            };
+
+        case MqttTypes.DISCONNECT_SUCCESS:
+
+            return {
+                ...state,
+                connected: false,
+                connectionPending: false
+            };
     }
 
     return state;
 };
 
 internals.initial = () => ({
-    connected: false
+    connected: false,
+    connectionPending: false
 });

@@ -6,11 +6,12 @@ const internals = {};
 
 internals.connect = Connect(
     (state) => ({
+        power: state.kegbot.power,
         isConnected: state.mqtt.connected
     }),
     {
-        drive: KegbotActions.drive,
-        setMotors: KegbotActions.setMotors
+        setMotors: KegbotActions.setMotors,
+        setPower: KegbotActions.setPower
     }
 );
 

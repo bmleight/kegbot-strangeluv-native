@@ -7,7 +7,8 @@ const internals = {};
 internals.connect = Connect(
     (state) => ({
         isConnected: state.mqtt.connected,
-        hasFace: state.kegbot.faces !== null,
+        connectionPending: state.mqtt.connectionPending,
+        faces: state.kegbot.faces,
         battery: state.kegbot.battery
     }),
     {

@@ -1,5 +1,6 @@
 const Client = require('../utils/mqtt-client');
 const { Message } = require('react-native-paho-mqtt');
+const KegbotActions = require('../actions/kegbot');
 
 module.exports = (store) => {
 
@@ -18,6 +19,7 @@ module.exports = (store) => {
         // Invert X
         const x = state.kegbot.velocityX;
         const y = state.kegbot.velocityY * -1;
+        const power = state.kegbot.power;
 
         // Calculate R+L (Call it V): V =(100-ABS(X)) * (Y/100) + Y
         const v = (100 - Math.abs(x)) * (y / 100) + y;
@@ -26,10 +28,10 @@ module.exports = (store) => {
         const w = (100 - Math.abs(y)) * (x / 100) + x;
 
         // Calculate R: R = (V+W) /2 -- I inverted and switched these...because shit is/was backwards!
-        const left = Math.floor((v + w) / 2) * -1;
+        const left = Math.floor((v + w) / 2) * -1 * power;
 
         // Calculate L: L= (V-W)/2 -- I inverted and switched these...because shit is/was backwards! -- could be how jazzy is wired
-        const right = Math.floor((v - w) / 2) * -1;
+        const right = Math.floor((v - w) / 2) * -1 * power;
 
         // Do any scaling on R and L your hardware may require.
         // Send those values to your Robot.
@@ -43,5 +45,30 @@ module.exports = (store) => {
         setTimeout(sendVelocity, 100);
     };
 
+    // handy for testing the face icon
+    // let joy = 0;
+    // const testFaceIcons = () => {
+    //
+    //     store.dispatch(KegbotActions.foundFace({
+    //         timestamp: new Date().getTime(),
+    //         faces: [{
+    //             confidence: 0.984375,
+    //             joy,
+    //             boundingBox: [579, 60, 409, 409]
+    //         }]
+    //     }));
+    //
+    //     joy += .01;
+    //
+    //     if (joy < 1) {
+    //         setTimeout(testFaceIcons, 50);
+    //     }
+    //     else {
+    //         joy = 0;
+    //         setTimeout(testFaceIcons, 50);
+    //     }
+    // };
+
     setTimeout(sendVelocity, 1000);
+    // setTimeout(testFaceIcons, 1000);
 };

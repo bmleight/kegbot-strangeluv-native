@@ -10,7 +10,7 @@ module.exports = (store) => {
 
     Client.on('connectionLost', (responseObject) => {
 
-        store.dispatch(MqttActions.disconnected());
+        store.dispatch(MqttActions.disconnectSuccess());
     });
 
     Client.on('messageReceived', (message) => {

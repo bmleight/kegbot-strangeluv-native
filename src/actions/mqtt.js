@@ -5,17 +5,35 @@ const internals = {};
 
 const actions = exports;
 
-exports.connected = () => ({
-    type: MqttTypes.CONNECTED
+exports.connectStart = () => ({
+    type: MqttTypes.CONNECT_START
 });
 
-exports.disconnected = () => ({
-    type: MqttTypes.DISCONNECTED
+exports.connectSuccess = () => ({
+    type: MqttTypes.CONNECT_SUCCESS
+});
+
+exports.connectFail = () => ({
+    type: MqttTypes.CONNECT_FAILURE
+});
+
+exports.disconnectStart = () => ({
+    type: MqttTypes.DISCONNECT_START
+});
+
+exports.disconnectSuccess = () => ({
+    type: MqttTypes.DISCONNECT_SUCCESS
+});
+
+exports.disconnectFail = () => ({
+    type: MqttTypes.DISCONNECT_FAILURE
 });
 
 exports.connect = () => {
 
     return (dispatch) => {
+
+        dispatch(actions.connectStart());
 
         Client
         .connect()
@@ -24,11 +42,11 @@ exports.connect = () => {
             // Client.subscribe('hackbot/*');  // TODO: does this work?
             Client.subscribe('hackbot/status');
             Client.subscribe('hackbot/faces');
-            dispatch(actions.connected());
+            dispatch(actions.connectSuccess());
         })
         .catch((responseObject) => {
 
-            dispatch(actions.disconnected());
+            dispatch(actions.connectFail());
         });
     };
 };
@@ -37,11 +55,13 @@ exports.disconnect = () => {
 
     return (dispatch) => {
 
+        dispatch(actions.disconnectStart());
+
         Client
         .disconnect()
-        .then(() => {
+        .catch((responseObject) => {
 
-            dispatch(actions.disconnected());
+            dispatch(actions.disconnectFail());
         });
     };
 };
