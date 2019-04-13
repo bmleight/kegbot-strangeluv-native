@@ -23,6 +23,13 @@ exports.setMotors = (vx, vy) => ({
     }
 });
 
+exports.setPower = (power) => ({
+    type: KegbotTypes.SET_POWER,
+    payload: {
+        power
+    }
+});
+
 exports.setBattery = (volts) => ({
     type: KegbotTypes.SET_BATTERY,
     payload: {
