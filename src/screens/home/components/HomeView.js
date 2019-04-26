@@ -11,8 +11,13 @@ module.exports = class HomeView extends React.PureComponent {
     static propTypes = {
         setMotors: T.func.isRequired,
         setPower: T.func.isRequired,
+        connectFaceSocket: T.func.isRequired,
         isConnected: T.bool.isRequired,
-        power: T.number.isRequired
+        isFaceSocketConnected: T.bool.isRequired,
+        isFaceSocketConnectionPending: T.bool.isRequired,
+        power: T.number.isRequired,
+        videoWidth: T.number,
+        videoHeight: T.number
     };
 
     constructor(props) {
@@ -149,24 +154,34 @@ module.exports = class HomeView extends React.PureComponent {
 
     renderVideo() {
 
-        const backgroundStyles = {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0
-        };
-
+        // const backgroundStyles = {
+        //     position: 'absolute',
+        //     top: 0,
+        //     left: 0,
+        //     bottom: 0,
+        //     right: 0
+        // };
+        //
         // <Video
         //     source={require('../assets/char-star.mp4')}
         //     // source={{ uri:'http://192.168.86.39:4664' }}
         //     style={backgroundStyles}
         // />
-
+        // console.warn(this.props.isFaceSocketConnected);
         return (
-            <Container>
-                <Text>Video feed from kegbot coming soon...</Text>
-            </Container>
+            <Card>
+                <CardItem bordered>
+                    <Container>
+                        <Text>Video feed from kegbot coming soon...</Text>
+                        <Button disabled={this.props.isFaceSocketConnected} onPress={this.props.connectFaceSocket}>
+                            <Text>Connect</Text>
+                        </Button>
+                        {this.props.videoWidth && this.props.videoHeight &&
+                            <Text>Video Dimensions: {this.props.videoWidth} x {this.props.videoHeight}</Text>
+                        }
+                    </Container>
+                </CardItem>
+            </Card>
         );
     }
 

@@ -1,5 +1,6 @@
 const Connect = require('react-redux').connect;
 const KegbotActions = require('actions/kegbot');
+const FaceSocketActions = require('actions/face-socket');
 const HomeView = require('../components/HomeView');
 
 const internals = {};
@@ -7,11 +8,16 @@ const internals = {};
 internals.connect = Connect(
     (state) => ({
         power: state.kegbot.power,
-        isConnected: state.mqtt.connected
+        isConnected: state.mqtt.connected,
+        isFaceSocketConnected: state.faces.connected,
+        isFaceSocketConnectionPending: state.faces.connectionPending,
+        videoWidth: state.faces.videoWidth,
+        videoHeight: state.faces.videoHeight
     }),
     {
         setMotors: KegbotActions.setMotors,
-        setPower: KegbotActions.setPower
+        setPower: KegbotActions.setPower,
+        connectFaceSocket: FaceSocketActions.connect
     }
 );
 
