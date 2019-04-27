@@ -12,7 +12,8 @@ internals.connect = Connect(
         isFaceSocketConnected: state.faces.connected,
         isFaceSocketConnectionPending: state.faces.connectionPending,
         videoWidth: state.faces.videoWidth,
-        videoHeight: state.faces.videoHeight
+        videoHeight: state.faces.videoHeight,
+        videoFaces: state.faces.faces
     }),
     {
         setMotors: KegbotActions.setMotors,

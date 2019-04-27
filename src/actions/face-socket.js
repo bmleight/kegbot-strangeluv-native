@@ -33,13 +33,44 @@ exports.newCodecData = (payload) => ({
     payload
 });
 
+exports.newFaceData = (payload) => ({
+    type: FaceSocketTypes.FACE_SOCKET_NEW_FACE_DATA,
+    payload
+});
+
+internals.convertFaces = (rawFaces) => {
+
+    const converted = rawFaces.map((face) => {
+
+        let faceString = 'n/a';
+
+        switch (face.getElementCase()) {
+            case proto.InferenceElement.ElementCase.RECTANGLE:
+                const rect = face.getRectangle();
+                faceString = `[X: ${rect.getX()}, Y: ${rect.getY()}, W: ${rect.getW()}, H: ${rect.getH()}]`;
+                break;
+            case proto.InferenceElement.ElementCase.LABEL:
+                const label = face.getLabel();
+                faceString = label.getText() + `[X: ${label.getX()}, Y: ${label.getY()}, Size: ${label.getSize()}]`;
+                break;
+            default:
+                // Ignore.
+                break;
+        }
+
+        return {
+            faceString
+        };
+    });
+
+    return converted;
+};
+
 exports.connect = () => {
 
     return (dispatch) => {
 
         dispatch(actions.connectStart());
-
-        // console.warn('connecting');
 
         if (internals.client === null) {
             // console.warn('creating new client');
@@ -67,7 +98,6 @@ exports.connect = () => {
 
                                 const codecData = data.getCodecData();
 
-                                // TODO: what does this do...?  -- const sps_pps = codecData.getData_asU8();
                                 dispatch(actions.newCodecData({
                                     width: codecData.getWidth(),
                                     height: codecData.getHeight()
@@ -93,30 +123,13 @@ exports.connect = () => {
 
                                 break;
                             case proto.StreamData.TypeCase.INFERENCE_DATA:
-                                // handle_inference_data(data.getInferenceData());
 
+                                const inferenceData = data.getInferenceData();
+                                const inferenceList = inferenceData.getElementsList();
 
-                                // const list = data.getElementsList();
-                                // const len = list.length;
-                                // for (let i = 0; i < len; i++) {
-                                //     ctx.save();
-                                //     const element = list[i];
-                                //     switch (element.getElementCase()) {
-                                //         case proto.InferenceElement.ElementCase.RECTANGLE:
-                                //             draw_rectangle(ctx, width, height, element.getRectangle());
-                                //             break;
-                                //         case proto.InferenceElement.ElementCase.LABEL:
-                                //             draw_label(ctx, width, height, element.getLabel());
-                                //             break;
-                                //         default:
-                                //             // Ignore.
-                                //             break;
-                                //     }
-                                //     ctx.restore();
-                                // }
+                                const faceData = internals.convertFaces(inferenceList);
 
-
-                                // console.warn('INFERENCE_DATA');
+                                dispatch(actions.newFaceData(faceData));
                                 break;
                             default:
                                 break;

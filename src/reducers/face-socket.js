@@ -13,8 +13,7 @@ module.exports = (state, action) => {
     switch (type) {
 
         case FaceSocketTypes.FACE_SOCKET_NEW_CODEC_DATA:
-            // console.warn('new codec data!');
-            // console.warn(payload);
+
             return {
                 ...state,
                 videoWidth: payload.width,
@@ -51,7 +50,15 @@ module.exports = (state, action) => {
                 connected: false,
                 connectionPending: false,
                 videoWidth: null,
-                videoHeight: null
+                videoHeight: null,
+                faces: null
+            };
+
+        case FaceSocketTypes.FACE_SOCKET_NEW_FACE_DATA:
+
+            return {
+                ...state,
+                faces: payload
             };
     }
 
@@ -62,5 +69,6 @@ internals.initial = () => ({
     connected: false,
     connectionPending: false,
     videoWidth: null,
-    videoHeight: null
+    videoHeight: null,
+    face: null
 });

@@ -17,7 +17,8 @@ module.exports = class HomeView extends React.PureComponent {
         isFaceSocketConnectionPending: T.bool.isRequired,
         power: T.number.isRequired,
         videoWidth: T.number,
-        videoHeight: T.number
+        videoHeight: T.number,
+        videoFaces: T.object
     };
 
     constructor(props) {
@@ -179,6 +180,7 @@ module.exports = class HomeView extends React.PureComponent {
                         {this.props.videoWidth && this.props.videoHeight &&
                             <Text>Video Dimensions: {this.props.videoWidth} x {this.props.videoHeight}</Text>
                         }
+                        {this.props.videoFaces && this.props.videoFaces.map((face) => <Text>{face.faceString}</Text>)}
                     </Container>
                 </CardItem>
             </Card>
