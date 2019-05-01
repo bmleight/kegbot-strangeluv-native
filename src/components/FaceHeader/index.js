@@ -17,7 +17,7 @@ module.exports = class FaceHeader extends React.PureComponent {
 
     render() {
 
-        const { title, faces, battery, isConnected, connect, disconnect, connectionPending } = this.props;
+        const { title, faces, battery, isConnected, connect, disconnect, connectionPending, isPouring } = this.props;
 
         let batteryIcon = 'battery-empty';
 
@@ -106,6 +106,11 @@ module.exports = class FaceHeader extends React.PureComponent {
                     {faces &&
                         <Button transparent>
                             <Icon type='FontAwesome5' name={faceIcon} style={faceIconStyles} />
+                        </Button>
+                    }
+                    {isPouring &&
+                        <Button transparent>
+                            <Icon name='md-beer' style={defaultIconStyles} />
                         </Button>
                     }
                 </Right>

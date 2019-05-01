@@ -38,6 +38,20 @@ module.exports = (state, action) => {
                 ...state,
                 faces: payload.faces
             };
+
+        case KegbotTypes.POUR_START:
+
+            return {
+                ...state,
+                isPouring: true
+            };
+
+        case KegbotTypes.POUR_END:
+
+            return {
+                ...state,
+                isPouring: false
+            };
     }
 
     return state;
@@ -49,7 +63,8 @@ internals.initial = () => ({
     power: 0.5,
     battery: null,
     // battery: 25,
-    faces: null
+    faces: null,
+    isPouring: false
     // faces: {
     //     timestamp: new Date().getTime(),
     //     faces: [{

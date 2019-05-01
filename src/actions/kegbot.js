@@ -43,3 +43,11 @@ exports.foundFace = (faces) => ({
         faces
     }
 });
+
+exports.startPouring = () => ({
+    type: KegbotTypes.POUR_START
+});
+
+exports.endPouring = () => ({
+    type: KegbotTypes.POUR_END
+});
