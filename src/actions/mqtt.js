@@ -42,6 +42,8 @@ exports.connect = () => {
             // Client.subscribe('hackbot/*');  // TODO: does this work?
             Client.subscribe('hackbot/status');
             Client.subscribe('hackbot/faces');
+            Client.subscribe('hackbot/flow-start');
+            Client.subscribe('hackbot/flow-end');
             dispatch(actions.connectSuccess());
         })
         .catch((responseObject) => {

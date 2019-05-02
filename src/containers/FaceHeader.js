@@ -9,7 +9,8 @@ internals.connect = Connect(
         isConnected: state.mqtt.connected,
         connectionPending: state.mqtt.connectionPending,
         faces: state.kegbot.faces,
-        battery: state.kegbot.battery
+        battery: state.kegbot.battery,
+        isPouring: state.kegbot.isPouring
     }),
     {
         connect: MqttActions.connect,

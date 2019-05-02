@@ -17,6 +17,16 @@ module.exports = (store) => {
 
         switch (message.destinationName) {
 
+            case 'hackbot/flow-start':
+
+                store.dispatch(KegbotActions.startPouring());
+                break;
+
+            case 'hackbot/flow-end':
+
+                store.dispatch(KegbotActions.endPouring());
+                break;
+
             case 'hackbot/status':
 
                 const payload = JSON.parse(message.payloadString);
