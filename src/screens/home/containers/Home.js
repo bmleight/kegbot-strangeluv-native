@@ -18,6 +18,8 @@ internals.connect = Connect(
     {
         setMotors: KegbotActions.setMotors,
         setPower: KegbotActions.setPower,
+        lightsOff: KegbotActions.lightsOff,
+        lightsOn: KegbotActions.lightsOn,
         connectFaceSocket: FaceSocketActions.connect
     }
 );

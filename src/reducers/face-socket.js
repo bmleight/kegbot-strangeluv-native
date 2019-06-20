@@ -68,7 +68,7 @@ module.exports = (state, action) => {
 internals.initial = () => ({
     connected: false,
     connectionPending: false,
-    videoWidth: null,
-    videoHeight: null,
+    videoWidth: 400,
+    videoHeight: 400,
     face: null
 });

@@ -4,7 +4,7 @@ const internals = {};
 
 module.exports = () => {
 
-    const ws = new WebSocket('ws://192.168.86.41:4664/');
+    const ws = new WebSocket('ws://hackbot-aiy-vision.local:4664/');
     // const ws = new WebSocket('ws://192.168.2.126:4664/');
 
     ws.onopen = internals.onopen;

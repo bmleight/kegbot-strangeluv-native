@@ -60,7 +60,7 @@ module.exports = (state, action) => {
 internals.initial = () => ({
     velocityX: 0,
     velocityY: 0,
-    power: 0.5,
+    power: 0.4,
     battery: null,
     // battery: 25,
     faces: null,
